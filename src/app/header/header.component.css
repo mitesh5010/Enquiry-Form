@@ -1,0 +1,64 @@
+.header-box{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  border: 1px solid #c1c1c1;
+  z-index: 1000;
+  background-color: white;
+}
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+}
+.form-title{
+  margin-left: 15px ;
+  margin-top: 10px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: inherit;
+  border-bottom: 1px solid transparent;
+  transition: border-bottom-color 0.2s ease;
+  font-size: larger;
+}
+.form-title:hover{
+  border-bottom: 1px solid #333;
+}
+.form-title:focus{
+   border-bottom: 1px solid #007bff;
+}
+.tab {
+  position: relative;
+  padding: 10px;
+  cursor: pointer;
+  color: #555;
+}
+
+.active-tab {
+  color: #673ab7;
+  border-bottom: 3px solid #673ab7;
+}
+
+.options{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+.publish, button{
+  display: flex;
+  justify-content: end;
+  background-color: #673ab7;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
