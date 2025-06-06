@@ -1,4 +1,13 @@
 .form-title{
+  position: absolute;
+  top: 130px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid #c1c1c1;
+  max-width: 800px;
+  width: 100%;
+  background-color: white;
+  border-radius: 6px;
   padding: 20px;
   border-radius: 6px;
   border-top: 5px solid #8658a0; /* 2px colored top border (using a shade of purple) */
