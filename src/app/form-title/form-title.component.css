@@ -1,0 +1,23 @@
+.form-title{
+  padding: 20px;
+  border-radius: 6px;
+  border-top: 5px solid #8658a0; /* 2px colored top border (using a shade of purple) */
+}
+.title{
+  font-size: larger;
+  
+}
+input[type="text"], textarea{
+  margin: 5px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: inherit;
+  border-bottom: 1px solid lch(59.65% 1.17 19.15);
+  transition: border-bottom-color 0.2s ease;
+  font-family: inherit;
+}
+#description{
+  width: 100%;
+  border-radius: 0; 
+}
