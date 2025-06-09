@@ -1,20 +1,17 @@
  section{
   position: relative;
-  top: 270px;
   left: 50%;
   transform: translateX(-50%);
   background-color: #fff;
   padding: 32px 16px 16px;
-  margin-bottom: 20px;
-  width: 100%;
-  max-width: 780px;
+  width: 100%; 
+  max-width: 800px;
   border-radius: 12px;
   box-shadow: 0 1px 6px rgba(60, 64, 67, 0.15);
   display: flex;
-  font-family: 'Roboto', 'Segoe UI', sans-serif;
   transition: box-shadow 0.2s ease;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
 } 
 
 section:hover {
