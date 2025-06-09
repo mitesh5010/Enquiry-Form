@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormTitleComponent } from "../form-title/form-title.component";
 import { QuestionsComponent } from "../questions/questions.component";
+import { Question } from '../questions/question/question.model';
 
 @Component({
   selector: 'app-form',
@@ -9,5 +10,12 @@ import { QuestionsComponent } from "../questions/questions.component";
   styleUrl: './form.component.css'
 })
 export class FormComponent {
+  private id = 1;
+   questions = signal<Question[]>([]);
+
+  addQuestion() {
+    const id = this.id++;
+    this.questions.update(qs => [...qs, { id, text: '', type: 'short-answer'  }]);
+  }
 
 }
