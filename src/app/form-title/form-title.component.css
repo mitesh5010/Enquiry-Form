@@ -1,6 +1,5 @@
 .form-title{
-  position: absolute;
-  top: 130px;
+  position: relative;
   left: 50%;
   transform: translateX(-50%);
   border: 1px solid #c1c1c1;
@@ -11,6 +10,8 @@
   padding: 20px;
   border-radius: 6px;
   border-top: 5px solid #8658a0; /* 2px colored top border (using a shade of purple) */
+  margin-bottom: 0px;
+  margin-top: 120px;
 }
 .title{
   font-size: larger;

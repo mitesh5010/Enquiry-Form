@@ -3,3 +3,17 @@ body{
   background-color: hsl(262, 76%, 83%);
   color: black;
 }
+
+.form-container {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: transparent;
+  width: 100%;
+  max-width: 800px;
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
+  transition: box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
