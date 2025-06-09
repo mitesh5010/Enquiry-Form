@@ -1,10 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
+import { Question } from '../questions/question/question.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormService {
 
-  constructor() { }
-
+  title = signal<string>('Untitle form');
+  description = signal<string>('');
+  questions = signal<Question[]>([]);
 }
