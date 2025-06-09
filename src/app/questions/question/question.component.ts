@@ -25,7 +25,4 @@ export class QuestionComponent {
     this.checkboxOptions.push(`Option ${this.checkboxOptions.length + 1}`);
   }
 
-  onSubmit(): void {
-    console.log('Form submitted');
-  }
 }

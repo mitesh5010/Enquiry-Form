@@ -1,5 +1,7 @@
 <form action="" class="form-container">
   <app-form-title />
-  <app-questions />
-  <button type="button" class="add-question-btn">Add Question</button>
+  @for (question of questions(); track question.id) {
+  <app-questions [id]="question.id" />
+  }
+  <button type="button" class="add-question-btn" (click)="addQuestion()">Add Question</button>
 </form>
