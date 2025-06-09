@@ -1,6 +1,7 @@
 import { Component, computed,  signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { FormService } from '../form/form.service';
 
 
 @Component({
@@ -10,15 +11,22 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  title = signal<string>('Untitle form');
   
-  enterTitle = computed(() => {
-    return this.title().trim();
-  })
+  constructor(public formService: FormService) {}
+
+  formTitle = signal<string>('Untitle form');
+  
+  // enterTitle = computed(() => {
+  //   return this.title().trim();
+  // })
   
   onPublish() {
-    console.log(
-      this.enterTitle()
+    console.log({
+      formTitle:this.formTitle().trim(),
+      title: this.formService.title().trim(),
+      description: this.formService.description().trim(),
+      questions: this.formService.questions(),
+    }
     );
   }
   

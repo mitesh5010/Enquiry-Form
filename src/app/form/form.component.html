@@ -1,7 +1,7 @@
 <form action="" class="form-container">
   <app-form-title />
-  @for (question of questions(); track question.id) {
-  <app-questions [id]="question.id" />
+  @for (question of this.formService.questions(); track question.id) {
+  <app-questions />
   }
   <button type="button" class="add-question-btn" (click)="addQuestion()">Add Question</button>
 </form>
