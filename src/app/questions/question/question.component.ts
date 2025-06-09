@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-question',
@@ -7,5 +7,25 @@ import { Component } from '@angular/core';
   styleUrl: './question.component.css'
 })
 export class QuestionComponent {
+  answerType = signal('short-answer');
 
+  multipleChoiceOptions: string[] = ['Option 1', 'Option 2'];
+  checkboxOptions: string[] = ['Option 1', 'Option 2'];
+
+  updateAnswerType(event: Event): void {
+    const target = event.target as HTMLSelectElement;
+    this.answerType.set(target.value);
+  }
+
+  addMultipleChoiceOption(): void {
+    this.multipleChoiceOptions.push(`Option ${this.multipleChoiceOptions.length + 1}`);
+  }
+
+  addCheckboxOption(): void {
+    this.checkboxOptions.push(`Option ${this.checkboxOptions.length + 1}`);
+  }
+
+  onSubmit(): void {
+    console.log('Form submitted');
+  }
 }
