@@ -6,7 +6,9 @@ import { Question } from '../questions/question/question.model';
 })
 export class FormService {
 
+  formTitle = signal<string>('Untitle form');
   title = signal<string>('Untitle form');
   description = signal<string>('');
   questions = signal<Question[]>([]);
+
 }

@@ -1,3 +1,16 @@
+.form-container {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: transparent;
+  width: 100%;
+  max-width: 800px;
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
+  transition: box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
 .add-question-btn {
   background-color: #aa45c9;
@@ -14,4 +27,23 @@
 
 .add-question-btn:hover {
   background-color: #d467f1;
+}
+
+.publish{
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: fit-content;
+  height: fit-content;
+  z-index: 9999;
+  padding: 10px 20px;
+  background-color: #8b5cf6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  
 }
