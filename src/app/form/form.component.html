@@ -1,12 +1,14 @@
-<form  class="" (ngSubmit)="onPublish()" >
+<form  class="" (ngSubmit)="onPublish()">
   <div class="publish">
     <button type="submit" >Publish</button>
   </div>
   <div class="form-container">
     <app-form-title />
-    @for (question of this.formService.questions(); track question.id) {
-      <app-questions />
-    }
+    <ng-container>
+      @for (question of formService.questions(); track question.id) {
+        <app-question [question]="question" />
+      }
+    </ng-container>
     <button type="button" class="add-question-btn" (click)="addQuestion()">Add Question</button>
   </div>
 </form>
