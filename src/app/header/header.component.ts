@@ -14,20 +14,4 @@ export class HeaderComponent {
   
   constructor(public formService: FormService) {}
 
-  formTitle = signal<string>('Untitle form');
-  
-  // enterTitle = computed(() => {
-  //   return this.title().trim();
-  // })
-  
-  onPublish() {
-    console.log({
-      formTitle:this.formTitle().trim(),
-      title: this.formService.title().trim(),
-      description: this.formService.description().trim(),
-      questions: this.formService.questions(),
-    }
-    );
-  }
-  
 }

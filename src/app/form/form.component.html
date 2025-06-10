@@ -1,7 +1,12 @@
-<form action="" class="form-container">
-  <app-form-title />
-  @for (question of this.formService.questions(); track question.id) {
-  <app-questions />
-  }
-  <button type="button" class="add-question-btn" (click)="addQuestion()">Add Question</button>
+<form  class="" (ngSubmit)="onPublish()" >
+  <div class="publish">
+    <button type="submit" >Publish</button>
+  </div>
+  <div class="form-container">
+    <app-form-title />
+    @for (question of this.formService.questions(); track question.id) {
+      <app-questions />
+    }
+    <button type="button" class="add-question-btn" (click)="addQuestion()">Add Question</button>
+  </div>
 </form>
