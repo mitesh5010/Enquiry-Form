@@ -6,3 +6,10 @@ export interface Question {
   required?: boolean;
   answer?: string | string[]; 
 }
+
+export interface FormData {
+  formTitle: string;
+  title: string;
+  description: string;
+  questions: Question[]
+}
