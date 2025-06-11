@@ -1,9 +1,10 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { FormTitleComponent } from "../form-title/form-title.component";
 import { FormService } from './form.service';
 import {  FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 import { QuestionComponent } from "../questions/question/question.component";
-import { Question } from '../questions/question/question.model';
+import { FormData, Question } from '../questions/question/question.model';
+import { FormApiService } from './form-api.service';
 
 @Component({
   selector: 'app-form',
@@ -12,11 +13,23 @@ import { Question } from '../questions/question/question.model';
   templateUrl: './form.component.html',
   styleUrl: './form.component.css'
 })
-export class FormComponent {
+export class FormComponent implements OnInit {
   private id = 1;
+  formData!: FormData;
 
-  constructor(public formService: FormService) {}
+
+  constructor(public formService: FormService,
+    private formApi: FormApiService
+  ) {}
  
+  ngOnInit(): void {
+    // this.formData = {
+    //   formTitle: this.formService.formTitle().trim(),
+    //   title: this.formService.title().trim(),
+    //   description: this.formService.description().trim(),
+    //   questions: this.formService.questions(),
+    // }
+  }
 
   addQuestion() {
     const id = this.id++;
@@ -30,14 +43,30 @@ export class FormComponent {
     this.formService.questions.update(qs => [...qs, newQuestion]);
   }
 
+  
   onPublish() {
     console.log({
-      formTitle:this.formService.formTitle().trim(),
+    formTitle:this.formService.formTitle().trim(),
+    title: this.formService.title().trim(),
+    description: this.formService.description().trim(),
+    questions: this.formService.questions(),
+    }
+    );
+
+    const formData: FormData = {
+      formTitle: this.formService.formTitle().trim(),
       title: this.formService.title().trim(),
       description: this.formService.description().trim(),
       questions: this.formService.questions(),
     }
-    );
+
+    this.formApi.createForm(formData).subscribe({
+      next: res => console.log('Form Submitted:', res),
+      error: err => console.log('Error!!',err),      
+      
+    })
   }
+
+  
 
 }
