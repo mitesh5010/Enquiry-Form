@@ -11,4 +11,11 @@ export class FormService {
   description = signal<string>('');
   questions = signal<Question[]>([]);
 
+  resetForm() {
+  this.formTitle.set('Untitle form');
+  this.title.set('Untitle form');
+  this.description.set('');
+  this.questions.set([]);
+}
+
 }
