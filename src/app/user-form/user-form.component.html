@@ -1,1 +1,28 @@
-<p>user-form works!</p>
+<div class="form-wrapper">
+  <div class="form-header">
+    <h1>title</h1>
+    <p>description</p>
+    <p class="required-note">* Indicates required question</p>
+  </div>
+
+  <form class="form-body" >
+    <div class="question-card">
+      <label for="" class="question-label">Question<span class="required">*</span></label>
+      <div class="options">
+        <div class="option">
+          <input type="checkbox">
+          <label>option 1</label>
+        </div>
+        <div class="option">
+          <input type="checkbox">
+          <label>option 2</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-action">
+      <button type="submit" class="submit-btn">Submit</button>
+      <a class="clear-link" href="#">Clear form</a>
+    </div>
+  </form>
+</div>

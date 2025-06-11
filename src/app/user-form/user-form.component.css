@@ -1,0 +1,79 @@
+.form-wrapper {
+  max-width: 600px;
+  margin: 2rem auto;
+  font-family: 'Google Sans', Roboto, Arial, sans-serif;
+  background-color: transparent;
+  padding: 1rem;
+  border-radius: 10px;
+}
+.form-header {
+  text-align: left;
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border-top: 6px solid #673ab7;
+}
+.form-header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.required-note {
+  color: #d93025;
+  font-size: 0.9rem;
+}
+.form-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.question-card {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.question-label {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.6rem;
+  font-size: 1.1rem;
+}
+
+.required {
+  color: red;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.option input {
+  margin-right: 0.5rem;
+  transform: scale(1.2);
+}
+
+.form-actions {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.submit-btn {
+  background-color: #8b5cf6;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.clear-link {
+  color: #673ab7;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
