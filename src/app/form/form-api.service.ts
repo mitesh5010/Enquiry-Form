@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class FormApiService {
 
   private apiUrl = 'http://localhost:3000/forms';
+  private apiFormUrl = 'http://localhost:3000/forms/1';
 
   constructor(private http: HttpClient) { }
 
@@ -16,6 +17,6 @@ export class FormApiService {
   }
 
   getForm(): Observable<any> {
-    return this.http.get(this.apiUrl);
+    return this.http.get(this.apiFormUrl);
   }
 }
