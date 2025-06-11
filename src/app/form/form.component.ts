@@ -22,14 +22,7 @@ export class FormComponent implements OnInit {
     private formApi: FormApiService
   ) {}
  
-  ngOnInit(): void {
-    // this.formData = {
-    //   formTitle: this.formService.formTitle().trim(),
-    //   title: this.formService.title().trim(),
-    //   description: this.formService.description().trim(),
-    //   questions: this.formService.questions(),
-    // }
-  }
+  ngOnInit(): void { }
 
   addQuestion() {
     const id = this.id++;
@@ -61,7 +54,10 @@ export class FormComponent implements OnInit {
     }
 
     this.formApi.createForm(formData).subscribe({
-      next: res => console.log('Form Submitted:', res),
+      next: res =>{
+        console.log('Form Submitted:', res);
+        this.formService.resetForm();
+      } ,
       error: err => console.log('Error!!',err),      
       
     })
