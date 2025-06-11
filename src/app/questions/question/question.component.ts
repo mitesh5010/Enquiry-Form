@@ -35,9 +35,11 @@ export class QuestionComponent implements OnInit {
 
     if (newType  === 'multiChoice' || newType  === 'checkbox') {
       this.question.options = [];
+      this.question.answer = '';
       this.multipleChoiceOptions.set([]);
     } else {
       this.question.answer = '';
+      this.question.options = [];
     }
   }
 

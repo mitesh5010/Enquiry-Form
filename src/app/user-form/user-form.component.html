@@ -1,0 +1,60 @@
+<form class="form-wrapper" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-header">
+    <h1>{{form.value.title}}</h1>
+    <p>{{form.value.description}}</p>
+    <p class="required-note">* Indicates required question</p>
+  </div>
+
+  <div class="form-body"  formArrayName="questions" >
+    @for (question of questions.controls; track $index; let i = $index) {
+      <div class="question-card" [formGroupName]="i">
+        <label for="" class="question-label">{{question.value.text}}@if (question.value.required) {<span class="required" >*</span>}</label>
+        @switch (question.value.type) {
+          @case ('short-answer') {
+            <input type="text" placeholder="Answer">
+          }
+          @case ('paragraph') {
+            <textarea placeholder="Answer"></textarea>
+          }
+         @case ('multiChoice') {
+            <div class="multiChoice" formArrayName="options">
+            @for (option of getOptions(i).controls; track $index; let j = $index) {
+              <div class="option">
+                <input type="radio">
+                <label>{{ option.value }}</label>
+              </div>
+            }
+          </div>
+          }
+          @case ('checkbox') {
+            <div class="checkbox" formArrayName="options">
+            @for (option of getOptions(i).controls; track $index; let j = $index) {
+            <div class="option">
+              <input type="checkbox">
+              <label>option 1</label>
+            </div>
+            }
+          </div>
+          }
+          @case ('date') {
+            <input type="date">
+          }
+          @case ('time') {
+            <input type="time">
+          }
+          @default {
+            <p>
+              Unknwon Question Type
+            </p>
+          }
+        }
+          
+        </div>
+      }
+    
+    <div class="form-action">
+      <button type="submit" class="submit-btn">Submit</button>
+      <a class="clear-link" href="#">Clear form</a>
+    </div>
+  </div>
+</form>

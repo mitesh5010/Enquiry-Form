@@ -1,4 +1,8 @@
 <main>
-  <app-header />
-  <app-form />
+  @if (isUserRoute()) {
+    <app-user-form />
+  } @else {
+    <app-header />
+    <app-form />
+  }
 </main>

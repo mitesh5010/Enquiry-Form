@@ -19,11 +19,11 @@
   </div>
   <!-- Short-Answer -->
   @if (answerType()==='short-answer') {
-  <input type="text" placeholder="Answer" class="answer" (input)="updateAnswer($event)" [value]="question.answer">
+  <input type="text" placeholder="Answer" class="answer" (input)="updateAnswer($event)" [value]="question.answer" disabled>
   }
   <!-- paragraph -->
   @if (answerType()==='paragraph') {
-  <textarea name="paragraph" class="paragraph answer" placeholder="Answer" (input)="updateAnswer($event)" [value]="question.answer"></textarea>
+  <textarea name="paragraph" class="paragraph answer" placeholder="Answer" (input)="updateAnswer($event)" [value]="question.answer" disabled></textarea>
   }
   <!-- multiChoice -->
   @if (answerType() === 'multiChoice') {
@@ -52,11 +52,11 @@
   }
   <!-- Date -->
   @if (answerType()=== 'date') {
-  <input type="date" class="answer" (input)="updateAnswer($event)" [value]="question.answer">
+  <input type="date" class="answer" (input)="updateAnswer($event)" [value]="question.answer" disabled>
   }
   <!-- Time -->
   @if (answerType()=== 'time') {
-  <input type="time" class="answer" (input)="updateAnswer($event)" [value]="question.answer">
+  <input type="time" class="answer" (input)="updateAnswer($event)" [value]="question.answer" disabled>
   }
   <div class="required">
     <input type="checkbox" [checked]="question.required" (change)="toggleRequired($event)">
