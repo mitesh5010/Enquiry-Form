@@ -59,7 +59,6 @@ export class UserFormComponent implements OnInit {
   getOptions(i: number): FormArray {
     return this.questions.at(i).get('options') as FormArray;
   }
-
   onOptionChange(event: any, qIndex: number, value: string) {
   const question = this.questions.at(qIndex);
   let currentAnswers = question.get('answer')?.value || [];

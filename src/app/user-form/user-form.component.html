@@ -4,7 +4,6 @@
     <p>{{form.value.description}}</p>
     <p class="required-note">* Indicates required question</p>
   </div>
-
   <div class="form-body" formArrayName="questions">
     @for (question of questions.controls; track $index; let i = $index) {
     <div class="question-card" [formGroupName]="i">
@@ -53,7 +52,6 @@
 
     </div>
     }
-
     <div class="form-action">
       <button type="submit" class="submit-btn">Submit</button>
       <a class="clear-link" href="#">Clear form</a>
