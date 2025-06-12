@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FormApiService } from '../form/form-api.service';
 import { FormData } from '../questions/question/question.model';
+import { QuestionAnswer } from '../responses/responses.model';
 
 @Component({
   selector: 'app-user-form',
@@ -12,6 +13,7 @@ import { FormData } from '../questions/question/question.model';
 })
 export class UserFormComponent implements OnInit {
   form!: FormGroup;
+  formId: number=0;
 
   constructor(private fb: FormBuilder, private http: FormApiService){}
 
@@ -45,6 +47,11 @@ export class UserFormComponent implements OnInit {
     });
   }
 
+  get formID():number{
+    this.formId = this.form.value.id;
+    return this.formId;
+  }
+
   get questions(): FormArray {
     return this.form.get('questions') as FormArray;
   }
@@ -53,8 +60,50 @@ export class UserFormComponent implements OnInit {
     return this.questions.at(i).get('options') as FormArray;
   }
 
+  onOptionChange(event: any, qIndex: number, value: string) {
+  const question = this.questions.at(qIndex);
+  let currentAnswers = question.get('answer')?.value || [];
+  if (event.target.checked) {
+    currentAnswers.push(value);
+  } else {
+    currentAnswers = currentAnswers.filter((v: string) => v !== value);
+  }
+  question.get('answer')?.setValue(currentAnswers);
+}
+
   onSubmit() {
     console.log(this.form.value);
+    const questionAnswer: QuestionAnswer[] = this.questions.controls.map((q: AbstractControl) => {
+      const type = q.value.type;
+      const qId = q.value.id;
+      if (type === 'multiChoice' || type === 'checkbox') {
+        return {
+          qId,
+          selectedOpt: q.value.answer ?? []
+        } as QuestionAnswer;
+      } else {
+        return {
+          qId,
+          answer: q.value.answer ?? ''
+        } as QuestionAnswer;
+      }
+    })
+    const responseData = {
+      formId : this.formId,
+      response: [
+        {
+          rId: Date.now(),
+          questionAnswer
+        }
+      ]
+    };
+
+    this.http.postResponse(responseData).subscribe({
+      next : res=> console.log('submitted',res),
+      error: err => console.log('error',err)
+      
+    })
+
   }
 
 
