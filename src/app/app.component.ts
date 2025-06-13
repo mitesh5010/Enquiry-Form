@@ -15,16 +15,5 @@ import { UserFormComponent } from "./user-form/user-form.component";
 export class AppComponent {
   title = 'Enquiry-Form';
 
-  private router = inject(Router);
-  currentPath = signal<string>('');
 
-  constructor() {
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe((event: NavigationEnd) => {
-      this.currentPath.set(event.urlAfterRedirects);
-    })
-  }
-
-  isUserRoute = computed(()=> this.currentPath().startsWith('/user-form'));
 }
