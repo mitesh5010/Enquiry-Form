@@ -1,22 +1,19 @@
 import { Routes } from '@angular/router';
-import { FormComponent } from './form/form.component';
-import { QuestionsComponent } from './questions/questions.component';
-import { ResponsesComponent } from './responses/responses.component';
-import { AppComponent } from './app.component';
-import { UserFormComponent } from './user-form/user-form.component';
+import {  AllFormsComponent } from './all-forms/all-forms.component';
 
 export const routes: Routes = [
   {
-    path: '',
-    component: AppComponent,
+    path: 'forms',
+    component: AllFormsComponent,
     title: 'Enquiry-Form'
   },
   {
-    path:'user-form',
-    component: UserFormComponent
+    path:'',
+    redirectTo: '/forms',
+    pathMatch: 'full'
   },
   {
-    path: 'form',
-    component: ResponsesComponent
+    path:'**',
+    redirectTo:'/forms'
   }
 ];

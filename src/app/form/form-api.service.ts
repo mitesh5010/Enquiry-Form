@@ -22,6 +22,9 @@ export class FormApiService {
     return this.http.post(this.apiUrl, data);
   }
 
+  getForms(): Observable<any> {
+    return this.http.get(this.apiUrl);
+  }
   getForm(): Observable<any> {
     return this.http.get(this.apiFormUrl);
   }
