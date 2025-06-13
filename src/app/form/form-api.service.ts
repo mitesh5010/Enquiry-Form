@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 import { ApiResponse } from '../responses/responses.model';
+import { Form } from '../all-forms/forms.model';
 
 
 @Injectable({
@@ -22,9 +23,13 @@ export class FormApiService {
     return this.http.post(this.apiUrl, data);
   }
 
+  getForms(): Observable<any> {
+    return this.http.get(this.apiUrl);
+  }
   getForm(): Observable<any> {
     return this.http.get(this.apiFormUrl);
   }
+
 
   postResponse(data: ApiResponse){
     return this.http.post(this.apiResponse, data);

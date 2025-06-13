@@ -5,11 +5,12 @@ import {  FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 import { QuestionComponent } from "../questions/question/question.component";
 import { FormData, Question } from '../questions/question/question.model';
 import { FormApiService } from './form-api.service';
+import { HeaderComponent } from "../header/header.component";
 
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [FormTitleComponent, FormsModule, QuestionComponent],
+  imports: [FormTitleComponent, FormsModule, QuestionComponent, HeaderComponent],
   templateUrl: './form.component.html',
   styleUrl: './form.component.css'
 })
