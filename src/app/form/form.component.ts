@@ -6,6 +6,7 @@ import { QuestionComponent } from "../questions/question/question.component";
 import { FormData, Question } from '../questions/question/question.model';
 import { FormApiService } from './form-api.service';
 import { HeaderComponent } from "../header/header.component";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -20,7 +21,8 @@ export class FormComponent implements OnInit {
 
 
   constructor(public formService: FormService,
-    private formApi: FormApiService
+    private formApi: FormApiService,
+    private router: Router
   ) {}
  
   ngOnInit(): void { }
@@ -58,8 +60,9 @@ export class FormComponent implements OnInit {
       next: res =>{
         console.log('Form Submitted:', res);
         this.formService.resetForm();
+        this.router.navigate(['/preview',res.id])
       } ,
-      error: err => console.log('Error!!',err),      
+      error: err => console.log('Error!!',err),     
       
     })
   }

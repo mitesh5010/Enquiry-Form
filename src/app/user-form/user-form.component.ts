@@ -4,6 +4,7 @@ import { AbstractControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule
 import { FormApiService } from '../form/form-api.service';
 import { FormData } from '../questions/question/question.model';
 import { QuestionAnswer } from '../responses/responses.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-form',
@@ -13,12 +14,13 @@ import { QuestionAnswer } from '../responses/responses.model';
 })
 export class UserFormComponent implements OnInit {
   form!: FormGroup;
-  formId: number=0;
-
-  constructor(private fb: FormBuilder, private http: FormApiService){}
-
+  formId!:number;
+  
+  constructor(private fb: FormBuilder, private http: FormApiService, private route: ActivatedRoute){}
+  
   ngOnInit(): void {
-     this.http.getForm().subscribe((data)=>{
+    this.formId = +this.route.snapshot.params['id'];
+     this.http.getForm(this.formId).subscribe((data)=>{
       this.buildForm(data);
      })
      
