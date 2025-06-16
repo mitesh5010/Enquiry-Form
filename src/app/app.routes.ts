@@ -3,6 +3,7 @@ import {  AllFormsComponent } from './all-forms/all-forms.component';
 import { FormComponent } from './form/form.component';
 import { ResponsesComponent } from './responses/responses.component';
 import { UserFormComponent } from './user-form/user-form.component';
+import { PreviewComponent } from './preview/preview.component';
 
 export const routes: Routes = [
   {
@@ -22,7 +23,7 @@ export const routes: Routes = [
   },
   {
     path:'preview/:id',
-    component: UserFormComponent
+    component: PreviewComponent,
   },
   {
     path: 'forms/responses',

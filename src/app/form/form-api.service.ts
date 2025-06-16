@@ -35,4 +35,8 @@ export class FormApiService {
     return this.http.post(this.apiResponse, data);
   }
 
+  getFormTest(): Observable<any> {
+    return this.http.get(this.apiFormUrl);
+  }
+
 }
