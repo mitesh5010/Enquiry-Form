@@ -22,6 +22,10 @@ export const routes: Routes = [
     title: 'New Form'
   },
   {
+    path:'forms/:id',
+    component: UserFormComponent,
+  },
+  {
     path:'preview/:id',
     component: PreviewComponent,
   },
