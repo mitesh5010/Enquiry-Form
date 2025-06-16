@@ -22,11 +22,16 @@ export const routes: Routes = [
     title: 'New Form'
   },
   {
+    path:'forms/:id/edit',
+    component: FormComponent,
+    title: 'Edit Form'
+  },
+  {
     path:'forms/:id',
     component: UserFormComponent,
   },
   {
-    path:'preview/:id',
+    path:'forms/preview/:id',
     component: PreviewComponent,
   },
   {
@@ -36,6 +41,6 @@ export const routes: Routes = [
   },
   {
     path:'**',
-    redirectTo:'/forms'
+    redirectTo:''
   },
 ];

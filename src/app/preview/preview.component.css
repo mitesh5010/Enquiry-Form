@@ -1,3 +1,6 @@
+body{
+  overflow-y: auto;
+}
 .form-wrapper {
   max-width: 800px;
   margin: 2rem auto;
@@ -135,4 +138,62 @@ input[type="checkbox"] {
   accent-color: #673ab7; /* purple theme */
   cursor: pointer;
   margin: 0;
+}
+
+.form-action {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+
+  
+
+  background-color: white;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+
+.share-box {
+  width: 310px;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 6px 8px;
+  border-radius: 6px;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.share-box input {
+  width: 160px;
+  padding: 4px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.copy-btn {
+  background: #eee;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.edit-btn {
+  background-color: #6200ee;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  padding:  auto;
+  margin: auto;
 }
