@@ -5,7 +5,11 @@
 <form  class="" (ngSubmit)="onPublish()">
     <button type="submit" class="publish" >Publish</button>
   <div class="form-container">
-    <app-form-title />
+    <section class="title-card">
+      <input type="text" placeholder="Untitle form" class="title" [(ngModel)]="formService.title">
+      <br>
+      <textarea name="description" id="description" placeholder="For description" [(ngModel)]="formService.description"></textarea>
+    </section>
     <ng-container>
       @for (question of formService.questions(); track question.id) {
         <app-question [question]="question" />
