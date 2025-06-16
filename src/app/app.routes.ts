@@ -4,6 +4,8 @@ import { FormComponent } from './form/form.component';
 import { ResponsesComponent } from './responses/responses.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { PreviewComponent } from './preview/preview.component';
+import { ViewsComponent } from './views/views.component';
+import { Component } from '@angular/core';
 
 export const routes: Routes = [
   {
@@ -32,13 +34,20 @@ export const routes: Routes = [
   },
   {
     path:'forms/view/:id',
-    component: PreviewComponent,
+    component: ViewsComponent,
+    children: [
+      {
+        path: '',
+        component: PreviewComponent,
+      },
+      {
+        path: 'responses',
+        component: ResponsesComponent,
+        title: 'Responses',
+      },
+    ]
   },
-  {
-    path: 'forms/responses',
-    component: ResponsesComponent,
-    title: 'Responses',
-  },
+  
   {
     path:'**',
     redirectTo:''

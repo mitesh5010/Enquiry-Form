@@ -1,6 +1,6 @@
-import { Component, computed,  signal } from '@angular/core';
+import { Component, computed,  OnInit,  signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 import { FormService } from '../form/form.service';
 
 
@@ -10,8 +10,15 @@ import { FormService } from '../form/form.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+  formId!:string;
   
-  constructor(public formService: FormService) {}
+  constructor(public formService: FormService, private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe( params =>{
+      this.formId =params.get('id')!;
+    })
+  }
 
 }
