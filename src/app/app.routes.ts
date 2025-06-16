@@ -31,7 +31,7 @@ export const routes: Routes = [
     component: UserFormComponent,
   },
   {
-    path:'forms/preview/:id',
+    path:'forms/view/:id',
     component: PreviewComponent,
   },
   {

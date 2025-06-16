@@ -1,5 +1,4 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { FormTitleComponent } from "../form-title/form-title.component";
 import { FormService } from './form.service';
 import {  FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 import { QuestionComponent } from "../questions/question/question.component";
@@ -11,7 +10,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [FormTitleComponent, FormsModule, QuestionComponent, HeaderComponent],
+  imports: [FormsModule, QuestionComponent, HeaderComponent],
   templateUrl: './form.component.html',
   styleUrl: './form.component.css'
 })
