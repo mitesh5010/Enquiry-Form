@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import {  AllFormsComponent } from './all-forms/all-forms.component';
 import { FormComponent } from './form/form.component';
 import { ResponsesComponent } from './responses/responses.component';
+import { UserFormComponent } from './user-form/user-form.component';
+import { PreviewComponent } from './preview/preview.component';
 
 export const routes: Routes = [
   {
@@ -20,12 +22,25 @@ export const routes: Routes = [
     title: 'New Form'
   },
   {
+    path:'forms/:id/edit',
+    component: FormComponent,
+    title: 'Edit Form'
+  },
+  {
+    path:'forms/:id',
+    component: UserFormComponent,
+  },
+  {
+    path:'forms/preview/:id',
+    component: PreviewComponent,
+  },
+  {
     path: 'forms/responses',
     component: ResponsesComponent,
     title: 'Responses',
   },
   {
     path:'**',
-    redirectTo:'/forms'
+    redirectTo:''
   },
 ];

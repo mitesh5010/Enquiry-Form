@@ -11,7 +11,30 @@
   flex-direction: column;
   gap: 10px;
 }
-
+.header-top {
+  position: fixed;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 10px 15px; */
+  z-index: 1000;
+}
+.form-title{
+  margin-left: 15px ;
+  margin-top: 10px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: inherit;
+  border-bottom: 1px solid transparent;
+  transition: border-bottom-color 0.2s ease;
+  font-size: larger;
+}
+.form-title:hover{
+  border-bottom: 1px solid #333;
+}
+.form-title:focus{
+   border-bottom: 1px solid #007bff;
+}
 .add-question-btn {
   background-color: #aa45c9;
   color: white;
@@ -31,9 +54,9 @@
 
 .publish{
   position: fixed;
-  top: 20px;
+  top: 8px;
   right: 20px;
-  z-index: 9999;
+  z-index: 999;
   background-color: #8b5cf6;
   color: white;
   padding: 0.6rem 1.5rem;
@@ -41,6 +64,6 @@
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  margin-right: 1rem;
+  /* margin-right: 1rem; */
   transition: background-color 0.2s ease;
 }

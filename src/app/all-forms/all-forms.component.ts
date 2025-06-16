@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormApiService } from '../form/form-api.service';
 import { Form } from './forms.model'
-import {  Router } from '@angular/router';
+import {  Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-all-fomrs',
-  imports: [],
+  standalone: true,
+  imports: [RouterModule],
   templateUrl: './all-forms.component.html',
   styleUrl: './all-forms.component.css'
 })

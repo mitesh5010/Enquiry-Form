@@ -2,8 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FormApiService } from '../form/form-api.service';
-import { FormData } from '../questions/question/question.model';
 import { QuestionAnswer } from '../responses/responses.model';
+import { ActivatedRoute } from '@angular/router';
+import { FormService } from '../form/form.service';
 
 @Component({
   selector: 'app-user-form',
@@ -13,44 +14,19 @@ import { QuestionAnswer } from '../responses/responses.model';
 })
 export class UserFormComponent implements OnInit {
   form!: FormGroup;
-  formId: number=0;
-
-  constructor(private fb: FormBuilder, private http: FormApiService){}
-
+  formId!:number;
+  
+  constructor(private fb: FormBuilder, private formApiService: FormApiService, private route: ActivatedRoute,
+    private formService: FormService
+  ){}
+  
   ngOnInit(): void {
-     this.http.getForm().subscribe((data)=>{
-      this.buildForm(data);
+    this.formId = +this.route.snapshot.params['id'];
+     this.formApiService.getForm(this.formId).subscribe((data)=>{
+      this.form = this.formService.buildForm(data);
      })
      
     }
-  buildForm(data: FormData){
-    this.form = this.fb.group({
-      formTitle : [data.formTitle],
-      title: [data.title],
-      description: [data.description],
-      questions: this.fb.array(
-        data.questions.map(q=>
-          this.questionGroup(q)
-        )
-      )
-    })
-  }
-
-  questionGroup(q: any): FormGroup {
-    return this.fb.group({
-      id: [q.id],
-      text: [q.text],
-      type: [q.type],
-      required: [q.required],
-      answer: [q.answer],
-      options: this.fb.array((q.options??[]).map((opt:any) => this.fb.control(opt)))
-    });
-  }
-
-  get formID():number{
-    this.formId = this.form.value.id;
-    return this.formId;
-  }
 
   get questions(): FormArray {
     return this.form.get('questions') as FormArray;
@@ -97,7 +73,7 @@ export class UserFormComponent implements OnInit {
       ]
     };
 
-    this.http.postResponse(responseData).subscribe({
+    this.formApiService.postResponse(responseData).subscribe({
       next : res=> console.log('submitted',res),
       error: err => console.log('error',err)
       

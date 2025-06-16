@@ -1,4 +1,7 @@
 <app-header />
+<div class="header-top">
+  <input type="text" class="form-title" placeholder="Untitle form" [(ngModel)]="formService.formTitle">
+</div>
 <form  class="" (ngSubmit)="onPublish()">
     <button type="submit" class="publish" >Publish</button>
   <div class="form-container">

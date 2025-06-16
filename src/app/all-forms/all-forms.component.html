@@ -14,16 +14,18 @@
   <h2 class="section-title">All forms</h2>
   <div class="forms">
     @for (form of forms; track $index) {
-      <div class="form-list">
-        <div class="form-card">
-          <div class="form-thumbnail simple-form-card">
-            <img  alt="Form Preview">
-          </div>
-          <div class="form-details simple-form-card">
-            <h3>{{ form.formTitle || 'untitle form'}}</h3>
+      <a [routerLink]="['/forms/preview', form.id]" >
+        <div class="form-list">
+          <div class="form-card">
+            <div class="form-thumbnail simple-form-card">
+              <img  alt="Form Preview">
+            </div>
+            <div class="form-details simple-form-card">
+              <h3>{{ form.formTitle || 'untitle form'}}</h3>
+            </div>
           </div>
         </div>
-      </div>
+      </a>
     }
 
     @if (!isLoading && forms.length == 0) {
