@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FormApiService } from '../form/form-api.service';
@@ -49,6 +48,13 @@ export class UserFormComponent implements OnInit {
 }
 
   onSubmit() {
+
+    if (this.form.invalid) {
+    this.form.markAllAsTouched();
+    alert('Please answer all required questions.');
+    return;
+  }
+
     console.log(this.form.value);
     const questionAnswer: QuestionAnswer[] = this.questions.controls.map((q: AbstractControl) => {
       const type = q.value.type;
@@ -85,7 +91,7 @@ export class UserFormComponent implements OnInit {
         response: updatedResponse
       }).subscribe({
         next: res => console.log('Updated existing response:', res),
-        error: err => console.error('Update error:', err)
+        error: err => console.error('Update error:', err),
       });
     } else {
       this.responseApi.postResponse(responseData).subscribe({
