@@ -14,8 +14,6 @@ export class FormApiService {
   private apiUrl = 'http://localhost:3000/forms';
   private apiFormUrl = 'http://localhost:3000/forms/1';
 
-  private apiResponse = 'http://localhost:3000/responses';
-
 
   constructor(private http: HttpClient) { }
 
@@ -28,11 +26,6 @@ export class FormApiService {
   }
   getForm(id:number): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`);
-  }
-
-
-  postResponse(data: ApiResponse){
-    return this.http.post(this.apiResponse, data);
   }
 
   getFormTest(): Observable<any> {

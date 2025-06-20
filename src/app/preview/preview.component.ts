@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { FormApiService } from '../form/form-api.service';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormService } from '../form/form.service';
+import { ViewDesignComponent } from "../view-design/view-design.component";
 
 @Component({
   selector: 'app-preview',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ViewDesignComponent],
   templateUrl: './preview.component.html',
-  styleUrl: './preview.component.css'
+  styleUrl: './preview.component.css',
+  encapsulation: ViewEncapsulation.None
 })
 export class PreviewComponent implements OnInit {
   form!: FormGroup;
@@ -16,27 +16,15 @@ export class PreviewComponent implements OnInit {
   shareUrl!: string;
 
   constructor(
-    private formApiService: FormApiService,
     private route: ActivatedRoute,
-    private formService: FormService,
     private router: Router
   ){}
 
   ngOnInit(): void {
     this.formId = +this.route.snapshot.params['id'];
 
-    this.formApiService.getForm(this.formId).subscribe((data) => {
-    this.form = this.formService.buildForm(data);    
-    })
 
     this.shareUrl = `${window.location.origin}/forms/${this.formId}` 
-  }
-  get questions(): FormArray {
-    return this.form.get('questions') as FormArray;
-  }
-
-  getOptions(i: number): FormArray {
-    return this.questions.at(i).get('options') as FormArray;
   }
 
   copyLink() {

@@ -1,1 +1,28 @@
-<p>responses works!</p>
+<div class="header-res">
+  <p>{{totalRes}} responses</p>
+  <div class="tabs">
+    <a [class.active]="activeTab === 'individual'"
+       (click)="setTab('individual')" >Individual</a>
+    <a [class.active]="activeTab === 'question'"
+       (click)="setTab('question')">Question</a>
+  </div>
+  <div class="next-prev">
+    @if (activeTab === 'question') {
+      <button class="previous-btn">&#8592;</button>
+      1 of {{totalQue}}
+      <button class="next-btn">&#8594;</button>
+    }
+    @if (activeTab === 'individual') {
+      <button class="previous-btn" (click)="navigateResponse('prev')" [disabled]="currentResponseIndex === 0">&#8592;</button>
+      {{ currentResponseIndex + 1 }} of {{totalRes}}
+      <button class="next-btn" (click)="navigateResponse('next')" [disabled]="currentResponseIndex === formResponses.length - 1">&#8594;</button>
+    }
+  </div>
+</div>
+@if (activeTab==='question') {
+  <section class="res-que-card">que 1</section>
+
+}
+@if (activeTab==='individual') {
+  <app-view-design [responseData]="currentResponse?.questionAnswer" />
+}

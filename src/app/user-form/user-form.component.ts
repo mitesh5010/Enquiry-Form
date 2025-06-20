@@ -5,6 +5,8 @@ import { FormApiService } from '../form/form-api.service';
 import { QuestionAnswer } from '../responses/responses.model';
 import { ActivatedRoute } from '@angular/router';
 import { FormService } from '../form/form.service';
+import { ResponseApiService } from '../responses/response-api.service';
+
 
 @Component({
   selector: 'app-user-form',
@@ -17,7 +19,7 @@ export class UserFormComponent implements OnInit {
   formId!:number;
   
   constructor(private fb: FormBuilder, private formApiService: FormApiService, private route: ActivatedRoute,
-    private formService: FormService
+    private formService: FormService, private responseApi: ResponseApiService
   ){}
   
   ngOnInit(): void {
@@ -63,20 +65,34 @@ export class UserFormComponent implements OnInit {
         } as QuestionAnswer;
       }
     })
-    const responseData = {
-      formId : this.formId,
-      response: [
-        {
+
+    const newResponse = {
           rId: Date.now(),
           questionAnswer
         }
-      ]
+    const responseData = {
+      formId : this.formId,
+      response: [newResponse]
     };
 
-    this.formApiService.postResponse(responseData).subscribe({
-      next : res=> console.log('submitted',res),
-      error: err => console.log('error',err)
-      
+    this.responseApi.getresponseById(this.formId).subscribe( existing =>{
+      if (existing.length > 0) {
+      const record = existing[0];
+      const updatedResponse = [...record.response, newResponse];
+
+      this.responseApi.updateResponse(record.id, {
+        ...record,
+        response: updatedResponse
+      }).subscribe({
+        next: res => console.log('Updated existing response:', res),
+        error: err => console.error('Update error:', err)
+      });
+    } else {
+      this.responseApi.postResponse(responseData).subscribe({
+         next: res => console.log('new response:', res),
+        error: err => console.error('error:', err)
+      })
+    }
     })
 
   }

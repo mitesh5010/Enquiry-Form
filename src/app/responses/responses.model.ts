@@ -10,6 +10,5 @@ export interface FormResponse {
 }
 
 export interface ApiResponse {
-  formId: number;
   response: FormResponse[];
 }
