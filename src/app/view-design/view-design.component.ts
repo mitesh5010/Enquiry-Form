@@ -1,13 +1,14 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { FormArray, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { FormArray, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormApiService } from '../form/form-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormService } from '../form/form.service';
 import { QuestionAnswer } from '../responses/responses.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-view-design',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './view-design.component.html',
   styleUrl: './view-design.component.css',
   encapsulation: ViewEncapsulation.Emulated
@@ -16,7 +17,7 @@ export class ViewDesignComponent {
   form!: FormGroup;
   formId!: number;
   shareUrl!: string;
-  responseData?: QuestionAnswer[]; 
+  @Input() responseData?: QuestionAnswer[]; 
 
   constructor(
     private formApiService: FormApiService,

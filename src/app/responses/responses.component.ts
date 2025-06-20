@@ -3,10 +3,11 @@ import { ApiResponse, FormResponse } from './responses.model';
 import { ActivatedRoute } from '@angular/router';
 import { ResponseApiService } from './response-api.service';
 import { ViewDesignComponent } from "../view-design/view-design.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-responses',
-  imports: [ViewDesignComponent],
+  imports: [ViewDesignComponent, CommonModule],
   templateUrl: './responses.component.html',
   styleUrl: './responses.component.css'
 })
@@ -45,5 +46,14 @@ export class ResponsesComponent implements OnInit {
 
   setTab(tab: 'question' | 'individual'){
     this.activeTab = tab;
+  }
+
+  navigateResponse(direction: 'prev' | 'next'): void {
+    if (direction === 'prev' && this.currentResponseIndex > 0) {
+      this.currentResponseIndex--;
+    } else if (direction === 'next' && this.currentResponseIndex < this.formResponses.length - 1) {
+      this.currentResponseIndex++;
+    }
+    this.currentResponse = this.formResponses[this.currentResponseIndex];
   }
 }
