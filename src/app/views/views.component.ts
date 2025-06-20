@@ -7,7 +7,7 @@ import { RouterOutlet } from '@angular/router';
   imports: [HeaderComponent, RouterOutlet],
   templateUrl: './views.component.html',
   styleUrl: './views.component.css',
-  encapsulation:ViewEncapsulation.None
+  encapsulation:ViewEncapsulation.Emulated
 })
 export class ViewsComponent {
 
