@@ -1,10 +1,10 @@
 <div class="header-res">
   <p>{{totalRes}} responses</p>
   <div class="tabs">
-    <a [class.active]="activeTab === 'question'"
-       (click)="setTab('question')">Question</a>
     <a [class.active]="activeTab === 'individual'"
        (click)="setTab('individual')" >Individual</a>
+    <a [class.active]="activeTab === 'question'"
+       (click)="setTab('question')">Question</a>
   </div>
   <div class="next-prev">
     @if (activeTab === 'question') {

@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 export class ResponsesComponent implements OnInit {
   formResponses: FormResponse[] = [] ;
   formId!:number;
-  activeTab: 'question' | 'individual' = 'question';
+  activeTab: 'question' | 'individual' = 'individual';
   totalRes:number=0;
   totalQue:number=0;
   currentResponseIndex = 0;
