@@ -39,6 +39,9 @@ export class UserFormComponent implements OnInit {
   }
   onOptionChange(event: any, qIndex: number, value: string) {
   const question = this.questions.at(qIndex);
+   if (question.value.type === 'multiChoice') {
+    question.get('answer')?.setValue(value);
+  } else if (question.value.type === 'checkbox') {
   let currentAnswers = question.get('answer')?.value || [];
   if (event.target.checked) {
     currentAnswers.push(value);
@@ -46,6 +49,7 @@ export class UserFormComponent implements OnInit {
     currentAnswers = currentAnswers.filter((v: string) => v !== value);
   }
   question.get('answer')?.setValue(currentAnswers);
+}
   question.get('answer')?.markAsTouched();
 }
 

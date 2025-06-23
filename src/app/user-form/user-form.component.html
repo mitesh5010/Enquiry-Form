@@ -24,7 +24,7 @@
           <div class="multiChoice" formArrayName="options">
             @for (option of getOptions(i).controls; track $index; let j = $index) {
               <div class="option">
-                <input type="radio" [value]="option.value" (change)="onOptionChange($event, i, option.value)" [checked]="question.value.answer === option.value"/>
+                <input type="radio" [name]="'question-' + i" [value]="option.value" (change)="onOptionChange($event, i, option.value)" [checked]="question.value.answer === option.value"/>
           <label>{{ option.value }}</label>
         </div>
         }
@@ -62,7 +62,7 @@
 </div>
 }
 <div class="form-action">
-  <button type="submit" class="submit-btn">Submit</button>
+  <button type="submit" class="submit-btn" [disabled]="form.invalid">Submit</button>
   <a class="clear-link" href="#">Clear form</a>
 </div>
 </div>
