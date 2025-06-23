@@ -32,4 +32,8 @@ export class FormApiService {
     return this.http.get(this.apiFormUrl);
   }
 
+  updateForm(id:number, data: any): Observable<any>{
+    return this.http.put(`${this.apiUrl}/${id}`,data);
+  }
+
 }
