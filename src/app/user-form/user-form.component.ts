@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FormApiService } from '../form/form-api.service';
 import { QuestionAnswer } from '../responses/responses.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormService } from '../form/form.service';
 import { ResponseApiService } from '../responses/response-api.service';
 
@@ -19,7 +19,7 @@ export class UserFormComponent implements OnInit {
   formId!:number;
   
   constructor(private fb: FormBuilder, private formApiService: FormApiService, private route: ActivatedRoute,
-    private formService: FormService, private responseApi: ResponseApiService
+    private formService: FormService, private responseApi: ResponseApiService, private router: Router
   ){}
   
   ngOnInit(): void {
@@ -46,9 +46,31 @@ export class UserFormComponent implements OnInit {
     currentAnswers = currentAnswers.filter((v: string) => v !== value);
   }
   question.get('answer')?.setValue(currentAnswers);
+  question.get('answer')?.markAsTouched();
+}
+
+validateAllFormFields(formGroup: FormGroup | FormArray) {
+  Object.keys(formGroup.controls).forEach(field => {
+    const control = formGroup.get(field);
+    if (control instanceof FormGroup || control instanceof FormArray) {
+      this.validateAllFormFields(control);
+    } else {
+      control?.markAsTouched({ onlySelf: true });
+    }
+  });
 }
 
   onSubmit() {
+    this.validateAllFormFields(this.form);
+
+    if (this.form.invalid) {
+    // Scroll to first invalid question
+    const firstInvalidElement = document.querySelector('.ng-invalid');
+    if (firstInvalidElement) {
+      firstInvalidElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    return;
+  }
     console.log(this.form.value);
     const questionAnswer: QuestionAnswer[] = this.questions.controls.map((q: AbstractControl) => {
       const type = q.value.type;
@@ -94,6 +116,8 @@ export class UserFormComponent implements OnInit {
       })
     }
     })
+
+    this.router.navigate(['/submit', this.formId]);
 
   }
 

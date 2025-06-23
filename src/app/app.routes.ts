@@ -7,6 +7,7 @@ import { PreviewComponent } from './preview/preview.component';
 import { ViewsComponent } from './views/views.component';
 import { LoginComponent } from './login/login.component';
 import { AdminGuard } from './Auth/admin.guard';
+import { SubmitDisplayComponent } from './submit-display/submit-display.component';
 
 export const routes: Routes = [
   {
@@ -57,7 +58,11 @@ export const routes: Routes = [
     ],
     canActivate: [AdminGuard]
   },
-  
+  {
+    path: 'submit/:id',
+    component: SubmitDisplayComponent,
+    title: 'Form'
+  },
   {
     path:'**',
     redirectTo:''
