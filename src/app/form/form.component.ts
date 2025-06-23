@@ -5,7 +5,7 @@ import { QuestionComponent } from "../questions/question/question.component";
 import { FormData, Question } from '../questions/question/question.model';
 import { FormApiService } from './form-api.service';
 import { HeaderComponent } from "../header/header.component";
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -21,10 +21,12 @@ export class FormComponent implements OnInit {
 
   constructor(public formService: FormService,
     private formApi: FormApiService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
   ) {}
  
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+  }
 
   addQuestion() {
     const id = this.id++;
