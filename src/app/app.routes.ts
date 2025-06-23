@@ -5,29 +5,37 @@ import { ResponsesComponent } from './responses/responses.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { PreviewComponent } from './preview/preview.component';
 import { ViewsComponent } from './views/views.component';
-import { Component } from '@angular/core';
-import { ViewDesignComponent } from './view-design/view-design.component';
+import { LoginComponent } from './login/login.component';
+import { AdminGuard } from './Auth/admin.guard';
 
 export const routes: Routes = [
   {
-    path: 'forms',
-    component: AllFormsComponent,
-    title: 'Enquiry-Form'
+    path: 'login',
+    component: LoginComponent,
+    title: 'Form'
   },
   {
     path:'',
-    redirectTo: '/forms',
+    redirectTo: '/login',
     pathMatch: 'full'
+  },
+  {
+    path: 'forms',
+    component: AllFormsComponent,
+    title: 'Enquiry-Form',
+    canActivate: [AdminGuard]
   },
   {
     path: 'forms/newForm',
     component: FormComponent,
-    title: 'New Form'
+    title: 'New Form',
+    canActivate: [AdminGuard]
   },
   {
     path:'forms/:id/edit',
     component: FormComponent,
-    title: 'Edit Form'
+    title: 'Edit Form',
+    canActivate: [AdminGuard]
   },
   {
     path:'forms/:id',
@@ -46,7 +54,8 @@ export const routes: Routes = [
         component: ResponsesComponent,
         title: 'Responses',
       },
-    ]
+    ],
+    canActivate: [AdminGuard]
   },
   
   {
