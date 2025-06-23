@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormApiService } from '../form/form-api.service';
 import { Form } from './forms.model'
 import {  Router, RouterModule } from '@angular/router';
+import { AuthService } from '../Auth/auth.service';
 
 @Component({
   selector: 'app-all-fomrs',
@@ -14,7 +15,7 @@ export class AllFormsComponent implements OnInit {
   forms: Form[]=[];
   isLoading = true;
 
-  constructor(private formApiService: FormApiService, private router: Router){}
+  constructor(private formApiService: FormApiService, private router: Router, private auth: AuthService){}
 
   ngOnInit(): void {
     this.loadForms();
@@ -39,4 +40,8 @@ export class AllFormsComponent implements OnInit {
     this.router.navigate(['/forms/newForm']);
   }
 
+  logout(){
+    this.auth.logout();
+    this.router.navigate(['/login']);
+  }
 }
