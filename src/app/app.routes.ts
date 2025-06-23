@@ -6,6 +6,7 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { PreviewComponent } from './preview/preview.component';
 import { ViewsComponent } from './views/views.component';
 import { Component } from '@angular/core';
+import { ViewDesignComponent } from './view-design/view-design.component';
 
 export const routes: Routes = [
   {
