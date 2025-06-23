@@ -10,6 +10,10 @@
   font-family: 'Google Sans', Roboto, Arial, sans-serif;
 }
 
+:host ::ng-deep .res-form .form-wrapper {
+  margin-top: 0 !important; /* Your custom margin */
+}
+
 /* Title text (e.g., "2 responses") */
 .header-res p {
   font-size: 1.5rem;
