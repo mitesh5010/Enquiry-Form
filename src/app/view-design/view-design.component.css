@@ -2,7 +2,6 @@
 .form-wrapper {
   max-width: 800px;
   margin: auto;
-  font-family: 'Google Sans', Roboto, Arial, sans-serif;
   background-color: transparent;
   padding: 1rem 0;
   border-radius: 10px;
@@ -70,7 +69,6 @@ input[type="time"] {
   color: #292929;
   transition: border-color 0.2s, box-shadow 0.2s;
   box-sizing: border-box;
-  font-family: inherit;
 }
 
 input[type="text"]:focus,
