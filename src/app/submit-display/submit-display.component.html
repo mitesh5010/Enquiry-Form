@@ -1,0 +1,21 @@
+<div class="form-success-container">
+  <div class="form-card">
+    <div class="form-header">
+      <h1 class="form-title">{{ formTitle }}</h1>
+    </div>
+    
+    <div class="success-content">
+      <div class="success-message">
+        <p>Your response has been recorded.</p>
+      </div>
+      
+      <div class="action-section">
+        <a 
+          class="submit-another-link"
+          (click)="onSubmitAnother()" 
+        >
+          Submit another response
+        </a>
+      </div>
+    </div>
+  </div>

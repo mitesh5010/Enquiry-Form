@@ -1,0 +1,90 @@
+.form-success-container {
+  min-height: 100vh;
+  background-color: #f1f3f4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.form-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  width: 100%;
+  max-width: 640px;
+  overflow: hidden;
+  margin-bottom: 40px;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-header {
+  background: linear-gradient(135deg, #673AB7 0%, #9C27B0 100%);
+  padding: 24px 32px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.form-title {
+  color: white;
+  font-size: 32px;
+  font-weight: 400;
+  margin: 0;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
+.success-content {
+  padding: 32px;
+  min-height: 120px;
+}
+
+.success-message {
+  margin-bottom: 24px;
+}
+
+.success-message p {
+  color: #3c4043;
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 0;
+  font-weight: 400;
+}
+
+.action-section {
+  margin-top: 24px;
+}
+
+.submit-another-link {
+  color: #1a73e8;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: inline-block;
+  padding: 4px 0;
+  border-bottom: 1px solid transparent;
+}
+
+.submit-another-link:hover {
+  text-decoration: underline;
+  color: #1557b5;
+}
+
+.submit-another-link:focus {
+  outline: 2px solid #1a73e8;
+  outline-offset: 2px;
+  border-radius: 2px;
+}

@@ -78,7 +78,6 @@ input[type="time"] {
   color: #292929;
   transition: border-color 0.2s, box-shadow 0.2s;
   box-sizing: border-box;
-  font-family: inherit;
 }
 
 input[type="text"]:focus,

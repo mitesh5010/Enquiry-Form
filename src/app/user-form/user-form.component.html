@@ -1,60 +1,71 @@
-<form class="form-wrapper" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="form-header">
-    <h1>{{form.value.title}}</h1>
-    <p>{{form.value.description}}</p>
-    <p class="required-note">* Indicates required question</p>
-  </div>
-  <div class="form-body" formArrayName="questions">
-    @for (question of questions.controls; track $index; let i = $index) {
-    <div class="question-card" [formGroupName]="i">
-      <label for="" class="question-label">{{question.value.text}}@if (question.value.required) {<span
-          class="required">*</span>}</label>
+@if (!form) {
+  <div>Loading...</div>
+}
+@if (form) {
+  <form class="form-wrapper" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-header">
+      <h1>{{form.value.title}}</h1>
+      <p>{{form.value.description}}</p>
+      <p class="required-note">* Indicates required question</p>
+    </div>
+    <div class="form-body" formArrayName="questions">
+      @for (question of questions.controls; track $index; let i = $index) {
+        <div class="question-card" [formGroupName]="i">
+          <label for="" class="question-label">{{question.value.text}}@if (question.value.required) {<span
+            class="required">*</span>}</label>
       @switch (question.value.type) {
-      @case ('short-answer') {
-      <input type="text" placeholder="Answer" formControlName="answer">
-      }
-      @case ('paragraph') {
-      <textarea placeholder="Answer" formControlName="answer"></textarea>
-      }
-      @case ('multiChoice') {
-      <div class="multiChoice" formArrayName="options">
-        @for (option of getOptions(i).controls; track $index; let j = $index) {
-        <div class="option">
-          <input type="radio" [value]="option.value" (change)="onOptionChange($event, i, option.value)"/>
+        @case ('short-answer') {
+          <input type="text" placeholder="Answer" formControlName="answer" [class.invalid]="question.get('answer')?.touched && question.get('answer')?.invalid">
+        }
+        @case ('paragraph') {
+          <textarea placeholder="Answer" formControlName="answer" [class.invalid]="question.get('answer')?.touched && question.get('answer')?.invalid"></textarea>
+        }
+        @case ('multiChoice') {
+          <div class="multiChoice" formArrayName="options">
+            @for (option of getOptions(i).controls; track $index; let j = $index) {
+              <div class="option">
+                <input type="radio" [name]="'question-' + i" [value]="option.value" (change)="onOptionChange($event, i, option.value)" [checked]="question.value.answer === option.value"/>
           <label>{{ option.value }}</label>
         </div>
         }
       </div>
-      }
-      @case ('checkbox') {
+    }
+    @case ('checkbox') {
       <div class="checkbox" formArrayName="options">
         @for (option of getOptions(i).controls; track $index; let j = $index) {
-        <div class="option">
-          <input type="checkbox" [checked]="question.value.answer?.includes(option.value)"
-                  (change)="onOptionChange($event, i, option.value)">
-          <label>{{ option.value }}</label>
-        </div>
+          <div class="option">
+            <input type="checkbox" [checked]="question.value.answer?.includes(option.value)"
+            (change)="onOptionChange($event, i, option.value)">
+            <label>{{ option.value }}</label>
+          </div>
         }
       </div>
-      }
-      @case ('date') {
-      <input type="date" formControlName="answer">
-      }
-      @case ('time') {
-      <input type="time" formControlName="answer">
-      }
-      @default {
+    }
+    @case ('date') {
+      <input type="date" formControlName="answer" [class.invalid]="question.get('answer')?.touched && question.get('answer')?.invalid">
+    }
+    @case ('time') {
+      <input type="time" formControlName="answer" [class.invalid]="question.get('answer')?.touched && question.get('answer')?.invalid">
+    }
+    @default {
       <p>
         Unknwon Question Type
       </p>
-      }
-      }
-
-    </div>
     }
-    <div class="form-action">
-      <button type="submit" class="submit-btn">Submit</button>
-      <a class="clear-link" href="#">Clear form</a>
-    </div>
-  </div>
+  }
+  @if (question.get('answer')?.touched && question.get('answer')?.errors?.['required']) {
+          <div class="error-message">
+          This question is required
+          </div>
+        }
+  
+</div>
+}
+<div class="form-action">
+  <button type="submit" class="submit-btn" [disabled]="form.invalid">Submit</button>
+  <a class="clear-link" href="#">Clear form</a>
+</div>
+</div>
 </form>
+
+}

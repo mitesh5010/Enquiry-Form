@@ -17,6 +17,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class FormComponent implements OnInit {
   private id = 1;
   formData!: FormData;
+  formId!:number;
 
 
   constructor(public formService: FormService,
@@ -26,6 +27,15 @@ export class FormComponent implements OnInit {
   ) {}
  
   ngOnInit(): void { 
+    this.formId = this.route.snapshot.params['id'];
+    if (this.formId) {
+      this.formApi.getForm(this.formId).subscribe( form =>{
+        this.formService.formTitle.set(form.formTitle);
+      this.formService.title.set(form.title);
+      this.formService.description.set(form.description);
+      this.formService.questions.set(form.questions);
+      })
+    }
   }
 
   addQuestion() {
@@ -57,17 +67,25 @@ export class FormComponent implements OnInit {
       questions: this.formService.questions(),
     }
 
-    this.formApi.createForm(formData).subscribe({
-      next: res =>{
-        console.log('Form Submitted:', res);
-        this.formService.resetForm();
-        this.router.navigate(['/preview',res.id])
-      } ,
-      error: err => console.log('Error!!',err),     
+    if (this.formId) {
+      this.formApi.updateForm(this.formId, formData).subscribe({
+        next: res => {
+          alert('Form updated!!!');
+          this.router.navigate(['/forms/view', this.formId])
+        },
+        error: err => console.log('updated error:', err),
+      }); 
+    } else {
       
-    })
+      this.formApi.createForm(formData).subscribe({
+        next: res =>{
+          console.log('Form Submitted:', res);
+          this.formService.resetForm();
+          this.router.navigate(['/forms/view',res.id])
+        } ,
+        error: err => console.log('Error!!',err),     
+        
+      })
+    }
   }
-
-  
-
 }

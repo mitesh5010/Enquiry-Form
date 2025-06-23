@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { Question } from '../questions/question/question.model';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Form } from '../all-forms/forms.model';
 
 @Injectable({
@@ -40,7 +40,7 @@ export class FormService {
       text: [q.text],
       type: [q.type],
       required: [q.required],
-      answer: [q.answer],
+      answer: [q.answer,q.required ? Validators.required : null],
       options: this.fb.array((q.options??[]).map((opt:any) => this.fb.control(opt)))
     });
   }
