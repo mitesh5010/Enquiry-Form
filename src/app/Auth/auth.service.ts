@@ -26,6 +26,7 @@ export class AuthService {
 }>(`${this.apiUrl}/login`, { email, password }).pipe(
       tap(res => {
         localStorage.setItem(this.tokenKey, res.accessToken);
+        localStorage.setItem(this.userKey, JSON.stringify(res.user));
         this.isLoggedIn$.next(true);
       })
     );
