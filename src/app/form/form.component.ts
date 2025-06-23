@@ -26,7 +26,6 @@ export class FormComponent implements OnInit {
   ) {}
  
   ngOnInit(): void { 
-     console.log(this.route.parent?.snapshot.params['id']);
   }
 
   addQuestion() {

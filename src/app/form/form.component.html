@@ -1,12 +1,12 @@
 <app-header />
 <div class="header-top">
-  <input type="text" class="form-title" placeholder="Untitle form" [(ngModel)]="formService.formTitle">
+  <input type="text" class="form-title" placeholder="Untitle form" [(ngModel)]="formService.formTitle" name="formTitle">
 </div>
-<form  class="" (ngSubmit)="onPublish()">
-    <button type="submit" class="publish" >Publish</button>
+<form (ngSubmit)="onPublish()">
+  <button type="submit" class="publish">Publish</button>
   <div class="form-container">
     <section class="title-card">
-      <input type="text" placeholder="Untitle form" class="title" [(ngModel)]="formService.title">
+      <input type="text" placeholder="Untitle form" class="title" [(ngModel)]="formService.title" name="title">
       <br>
       <textarea name="description" id="description" placeholder="For description" [(ngModel)]="formService.description"></textarea>
     </section>
