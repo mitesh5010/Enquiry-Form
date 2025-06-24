@@ -75,7 +75,6 @@ validateAllFormFields(formGroup: FormGroup | FormArray) {
     }
     return;
   }
-    console.log(this.form.value);
     const questionAnswer: QuestionAnswer[] = this.questions.controls.map((q: AbstractControl) => {
       const type = q.value.type;
       const qId = q.value.id;
@@ -110,12 +109,12 @@ validateAllFormFields(formGroup: FormGroup | FormArray) {
         ...record,
         response: updatedResponse
       }).subscribe({
-        next: res => console.log('Updated existing response:', res),
+        next: res => console.log('Updated existing response:'),
         error: err => console.error('Update error:', err)
       });
     } else {
       this.responseApi.postResponse(responseData).subscribe({
-         next: res => console.log('new response:', res),
+         next: res => console.log('new response:'),
         error: err => console.error('error:', err)
       })
     }

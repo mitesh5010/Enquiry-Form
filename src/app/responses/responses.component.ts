@@ -24,14 +24,12 @@ export class ResponsesComponent implements OnInit {
 
   ngOnInit(): void {
     this.formId = +this.route.parent?.snapshot.params['id'];
-    console.log(this.formId)
     this.loadResponses()
   }
 
   loadResponses(){
     this.responseApi.getresponseById(this.formId).subscribe( {
       next: (data) => {
-        console.log(data);
         this.formResponses = data[0].response;
         if (this.formResponses.length>0) {
           this.currentResponse = this.formResponses[0];

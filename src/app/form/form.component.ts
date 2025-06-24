@@ -52,13 +52,6 @@ export class FormComponent implements OnInit {
 
   
   onPublish() {
-    console.log({
-    formTitle:this.formService.formTitle().trim(),
-    title: this.formService.title().trim(),
-    description: this.formService.description().trim(),
-    questions: this.formService.questions(),
-    }
-    );
 
     const formData: FormData = {
       formTitle: this.formService.formTitle().trim(),

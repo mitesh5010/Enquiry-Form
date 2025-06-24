@@ -25,8 +25,7 @@ export class AllFormsComponent implements OnInit {
     this.formApiService.getForms().subscribe({
       next: data => {
         this.forms = data,
-        this.isLoading = false,
-        console.log(this.forms);
+        this.isLoading = false;
       },
       error: err => {
         console.log('errors!',err);
