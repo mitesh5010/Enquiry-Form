@@ -1,22 +1,17 @@
 .logout{
   position: fixed;
-  top: 20px;
+  top: 8px;
   right: 20px;
-  z-index: 1000;
-  
-  .logout-btn {
-    padding: 0.5rem 1rem;
-    background-color: rgb(249, 121, 249);
-    border: solid plum;
-    border-radius: 2px;
-    
-    .pi-sign-out {
-      margin-right: 0.5rem;
-    }
-     &:hover {
-      background-color: rgba(226, 152, 241, 0.04) !important;
-    }
-  }
+  z-index: 999;
+  background-color: #8b5cf6;
+  color: white;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  /* margin-right: 1rem; */
+  transition: background-color 0.2s ease;
 }
 .forms-container{
   position: relative;
