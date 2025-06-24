@@ -43,10 +43,34 @@ export class ViewDesignComponent {
     return this.questions.at(i).get('options') as FormArray;
   }
 
-  getAnswer(questionId: string){
+  getAnswer(questionId: string, type?: string){
     if (!this.responseData) return null;
     const answer = this.responseData.find(q => q.qId === questionId)
-    return answer?.answer || answer?.selectedOpt || null;
+    let value= answer?.answer || answer?.selectedOpt || null;
+     if (type === 'date' && value) {
+    // Ensure value is in YYYY-MM-DD format
+    if (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value)) {
+      return value;
+    }
+    // Try to parse as Date
+    const date = new Date(String(value));
+    if (!isNaN(date.getTime())) {
+      return date.toISOString().slice(0, 10);
+    }
+    return '';
+  }
+  if (type === 'time' && value) {
+    // Ensure value is in HH:mm format
+    if (typeof value === 'string' && /^\d{2}:\d{2}$/.test(value)) {
+      return value;
+    }
+    // If value is like "01:00:00", trim to "01:00"
+    if (typeof value === 'string' && value.length >= 5) {
+      return value.slice(0, 5);
+    }
+    return '';
+  }
+  return value;
   }
 
   isOptionSelected(questionIndex: number, optionValue: string){

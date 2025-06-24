@@ -38,10 +38,10 @@
       </div>
       }
       @case ('date') {
-      <input type="date" [value]="getAnswer(question.value.id) || ''" disabled>
+      <input type="date" [value]="getAnswer(question.value.id, 'date') || ''" disabled>
       }
       @case ('time') {
-      <input type="time" [value]="getAnswer(question.value.id) || ''" disabled>
+      <input type="time" [value]="getAnswer(question.value.id, 'time') || ''" disabled>
       }
       @default {
       <p>

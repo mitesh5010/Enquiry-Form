@@ -14,7 +14,7 @@
     }
     @if (activeTab === 'individual') {
       <button class="previous-btn" (click)="navigateResponse('prev')" [disabled]="currentResponseIndex === 0">&#8592;</button>
-      {{ currentResponseIndex + 1 }} of {{totalRes}}
+      {{ totalRes === 0 ? 0 : currentResponseIndex + 1 }} of {{totalRes}}
       <button class="next-btn" (click)="navigateResponse('next')" [disabled]="currentResponseIndex === formResponses.length - 1">&#8594;</button>
     }
   </div>
