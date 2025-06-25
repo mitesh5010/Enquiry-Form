@@ -30,11 +30,19 @@ export class ResponsesComponent implements OnInit {
   loadResponses(){
     this.responseApi.getresponseById(this.formId).subscribe( {
       next: (data) => {
-        this.formResponses = data[0].response;
-        if (this.formResponses.length>0) {
-          this.currentResponse = this.formResponses[0];
-        } 
-        this.totalRes = this.formResponses.length;
+        if (data && data.length > 0 && data[0].response) {
+          this.formResponses = data[0].response;
+          if (this.formResponses.length > 0) {
+            this.currentResponse = this.formResponses[0];
+          } else {
+            this.currentResponse = undefined;
+          }
+          this.totalRes = this.formResponses.length;
+        } else {
+          this.formResponses = [];
+          this.currentResponse = undefined;
+          this.totalRes = 0;
+        }
       },
       error: err => console.log('Error!!', err)
        

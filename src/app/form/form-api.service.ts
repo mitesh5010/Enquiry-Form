@@ -1,9 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-
-import { ApiResponse } from '../responses/responses.model';
-import { Form } from '../all-forms/forms.model';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
@@ -11,8 +9,7 @@ import { Form } from '../all-forms/forms.model';
 })
 export class FormApiService {
 
-  private apiUrl = 'http://localhost:3000/forms';
-  private apiFormUrl = 'http://localhost:3000/forms/1';
+  private apiUrl =  `${environment.apiUrl}/forms`;
 
 
   constructor(private http: HttpClient) { }
@@ -26,10 +23,6 @@ export class FormApiService {
   }
   getForm(id:number): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`);
-  }
-
-  getFormTest(): Observable<any> {
-    return this.http.get(this.apiFormUrl);
   }
 
   updateForm(id:number, data: any): Observable<any>{

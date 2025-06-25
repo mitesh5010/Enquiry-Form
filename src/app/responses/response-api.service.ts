@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { ApiResponse } from './responses.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class ResponseApiService {
 
   constructor(private http: HttpClient) { }
 
-  private apiUrl = 'http://localhost:3000/responses';
+  private apiUrl =  `${environment.apiUrl}/responses`;
 
   getresponseById(formId: number):Observable<any[]>{
     return this.http.get<any[]>(`${this.apiUrl}?formId=${formId}`)
